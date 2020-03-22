@@ -4,9 +4,11 @@
 ./.vscode
 ./**/node_modules
 ./node_modules
-./videozone-backend/node_modules/*
-./videozone-client/node_modules/*
+./videozone-backend/node_module/**
+./videozone-client/node_module/**
+./videozone-backend/node_modules/**/*
+./videozone-client/node_modules/**/*
 ./**/env
-./**/node_modules
+./**/node_modules/**
 ./videozone-backend/node_module
 ./videozone-client/node_module
