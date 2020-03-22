@@ -3,4 +3,7 @@
 ./.idea
 ./.vscode
 ./**/node_mopdules
+./node_modules
+./videozone-backend/node_modules
+./videozone-client/node_modules
 ./**/env
