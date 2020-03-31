@@ -1,0 +1,12 @@
+/* No design available for desktop, tablet, due to this
+* container width will set to 767px, then apply background color dark
+*/ 
+
+body{
+  background: #000;
+}
+.mobile-container{
+  max-width: 767px;
+  padding-left: 15px;
+  padding-right: 15px;  
+}
