@@ -4,10 +4,39 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const swaggerUI = require('swagger-ui-express');
+const swaggerJSDoc = require('swagger-jsdoc');
+
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var videoRouter = require('./routes/video');
 
 var app = express();
+
+
+const swaggerConfig = {
+  swaggerDefinition:{
+    info: {
+      title: 'Videozone Server',
+      version: '1.0.0',
+      description: 'Videozone server APIs',      
+    }    
+  },
+  host: 'http://localhost:8080',
+  basePath: '/',
+  apis:[
+    "./controllers/**/*.js",
+    "./controllers/*.js",
+    "./routes/*.js",
+    "./docs/api-info/schema/**/*.json",
+    "./docs/api-info/schema/**/*.yml"
+  ]
+}
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -18,14 +47,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'docs')))
+app.use(express.static(path.join(__dirname, 'database')))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/videos', videoRouter)
+
+const swaggerDoc = swaggerJSDoc(swaggerConfig);
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+
 
 // error handler
 app.use(function(err, req, res, next) {

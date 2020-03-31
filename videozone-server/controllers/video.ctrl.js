@@ -1,0 +1,65 @@
+const fs = require("fs");
+const path = require("path");
+/* @todo Convert to class, then use either class or static method, first install babel for express js then use ES6 */
+/**
+ * VideCtrl class 
+ */
+const VideoCtrl = {
+  /**
+  * @swagger
+  * /videos:
+  *   get:
+  *     description: Retrive list of videos  
+  *     parameters:
+  *       - name: page 
+  *         in: query   
+  *       - $ref: '#per_page' 
+  *     responses:
+  *       '200':
+  *         description: OK  
+  *       404:
+  *         description: Requested page/data not found on server 
+  *       '5XX':
+*             description: Unexpected server error   
+  *             
+  * per_page:
+  *   type: integer 
+  */  
+  index: function(req, res, next){
+    const queries = req.query;
+    const perPage = queries.per_page || 20; // const { per_page, page, search } = queries;
+    const page = queries.page || 1;
+    const search = queries.search;
+    
+    const DATABASE_JSON_FILE_PATH = path.join(__dirname, "../database/static/video");
+    const VIDEO_FILE_NAME = 'CONTENTLISTINGPAGE-PAGE';
+    // requested_file = `${DATABASE_JSON_FILE_PATH}/${VIDEO_FILE_NAME}/${page}.json`;
+    const requestedFile = path.join(DATABASE_JSON_FILE_PATH, (VIDEO_FILE_NAME+page+'.json'));
+    // Check if file exists, else return empty data 
+    let responseData = {}
+    console.log(requestedFile)
+    if(fs.existsSync(requestedFile)){
+      try{
+        const fileResponse = fs.readFileSync(requestedFile, 'utf8');
+        const fileResponseJSON = JSON.parse(fileResponse);
+        responseData = fileResponseJSON        
+      }catch(e){
+        
+        responseData = {
+          meta:{}, links:{}, data:{},
+          error: e 
+        }
+      }            
+    }else{
+      responseData = {
+        meta:{},
+        links:{},
+        data:{}
+      }
+    }
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(responseData)
+  }
+}
+
+module.exports = VideoCtrl;

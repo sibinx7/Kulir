@@ -1,0 +1,7 @@
+parameters:
+  - name: per_page
+    in: query 
+    schema:
+      type: string 
+  - name: page 
+    in: query 

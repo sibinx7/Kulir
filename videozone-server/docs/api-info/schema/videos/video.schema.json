@@ -1,0 +1,17 @@
+components:
+  schemas:
+    Video:
+      type: object 
+      properties:
+        id:
+          type: integer 
+          description: Video ID
+        title:
+          type: string 
+          description: Video title 
+        image:
+          type: string 
+          description: Video image url 
+        description:
+          type: text 
+          description: Video description 
