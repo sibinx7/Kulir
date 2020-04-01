@@ -9,4 +9,21 @@ body{
   max-width: 767px;
   padding-left: 15px;
   padding-right: 15px;  
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  height: calc(100vh - 30px);
+  border: 1px solid #fff;
+  border-radius: 6px;;
+}
+
+.inifinit{
+  &__scroll{
+    &__wrapper{
+      position: relative;
+    }
+    &__inner{
+      position: relative;
+    }
+  }
 }
