@@ -43,18 +43,15 @@ const VideoCtrl = {
         const fileResponse = fs.readFileSync(requestedFile, 'utf8');
         const fileResponseJSON = JSON.parse(fileResponse);
         responseData = fileResponseJSON        
-      }catch(e){
-        
-        responseData = {
-          meta:{}, links:{}, data:{},
-          error: e 
+      }catch(e){      
+        responseData = {          
+          error: e,
+          page:{} 
         }
       }            
     }else{
-      responseData = {
-        meta:{},
-        links:{},
-        data:{}
+      responseData = {        
+        page:{}
       }
     }
     res.setHeader('Content-Type', 'application/json');

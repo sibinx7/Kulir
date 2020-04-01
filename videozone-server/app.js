@@ -8,6 +8,9 @@ const swaggerUI = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 
 
+const csrf = require('csurf');
+const cors = require('cors');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -50,9 +53,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'docs')))
 app.use(express.static(path.join(__dirname, 'database')))
 
+app.use(cors());
+app.options("*", cors());
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/videos', videoRouter)
+
+const csrfProtection = csrf({cookie: true});
+app.use(csrfProtection);
+
 
 const swaggerDoc = swaggerJSDoc(swaggerConfig);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
