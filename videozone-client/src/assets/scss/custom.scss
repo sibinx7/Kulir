@@ -38,3 +38,17 @@ body{
     }
   }
 }
+
+.header{
+  &__wrapper{
+    background-color: transparent;
+    background-image: url("../images/nav_bar.png");
+    background-size: contain;
+    background-position: bottom center;
+    padding-bottom: 10px;
+    margin-bottom: -20px;
+    background-repeat: repeat-x;
+    z-index: 2;
+    position: relative;
+  }
+}

@@ -136,24 +136,19 @@ class VideoIndex extends Component{
         {
           (
             <Suspense fallback={<div>Working...</div>}>
-              <div>
-
-              
+              <div>              
               <Scrollbars 
                   autoHeight={scrollAutoHeight}
                   onScroll={this.scrollbarScroll}
                   onScrollStop={this.scrollbarScrollStop}
                   style={
                     {
-                      height: `calc(100vh - 120px)`
+                      height: `calc(100vh - 80px)`
                     }
                   }      
                   ref={ (ref) => this.scrollRef = ref }            
                 >
-                  <div className="infinit__scroll__wrapper" 
-                    
-                    
-                  >
+                  <div className="infinit__scroll__wrapper">
                     <div className="infinit__scroll__inner">
              {/* <InfiniteScroll
                 pageStart={0}
@@ -165,6 +160,9 @@ class VideoIndex extends Component{
                 } }
               > */}
               <div className="grid grid-cols-3 gap-7">
+                <div className="pre-style-content  col-span-3 h-4">
+
+                </div>
               {
                 videoData.map((video, index) => {
                   const keyIndex = `${index}-${video.id || '#'}`
@@ -175,6 +173,9 @@ class VideoIndex extends Component{
                   )
                 })
               }
+              <div className="post-style-content col-span-3 h-4">
+
+              </div>
               </div>                       
               {/* </InfiniteScroll>       */}
               </div>

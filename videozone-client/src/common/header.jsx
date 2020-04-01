@@ -41,24 +41,25 @@ class Header extends Component{
     const { genre_title } = this.props;
     const { showSearchForm, searchText } = this.state;
     return( 
-      <header className="grid grid-cols-12 gap-3 pt-3 pb-3 pl-2 pr-2 relative">
+      <div className="header__wrapper">
+        <header className="grid grid-cols-12 gap-3 pt-3 pb-3 pl-2 pr-2 relative">
         <div className="col-span-10">
           <div>
             <div>              
-              <h5 className="text-white">
+              <h4 className="text-white">
                 <a href="" className="inline mr-3">
-                  <img src={IconBack} alt="Go back" className="inline"/>
+                  <img src={IconBack} alt="Go back" className="inline w-5"/>
                 </a>
                 <span className="inline">
                 {genre_title}
                 </span>
-              </h5>
+              </h4>
             </div>
           </div>
         </div>
         <div className="col-span-2 text-right">
           <button className="" onClick={e => this.showSearchForm(e)}>
-          <img src={IconSearch} alt="Search videos"/>
+          <img src={IconSearch} alt="Search videos" className="w-5"/>
           </button>
         </div>
         {/* Show search bar */}
@@ -81,6 +82,7 @@ class Header extends Component{
         
         {/* end Show search bar */}
       </header>
+      </div>
     )
   }
 }

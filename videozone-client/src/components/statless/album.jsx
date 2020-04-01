@@ -31,8 +31,8 @@ const Album = (({video}) => {
         <ImageComponent image_url={image_url} title={name}/>
       </div>
       <div className={"album__title"}>
-        <h3 className={`text-white`}>
-          <Link to={``} classname={`text-white`}>
+        <h3 className={`text-white mt-4 mb-6`}> {/* Design top 24 and bottom 90*/}
+          <Link to={``} className={`text-white`}>
             {name}
           </Link>
         </h3>

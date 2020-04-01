@@ -76,14 +76,17 @@ export const videos = {
           const videos = pageData['content-items']['content'];
           const stateData = {
             meta:{
-              title: page.title,
-              total: page['total-content-items'],
-              per_page: page['page-size-requested'],
-              page: page['page-num-requested'],
-              current_items: page['page-size-returned']
+              title: pageData.title,
+              total: pageData['total-content-items'],
+              per_page: pageData['page-size-requested'],
+              page: pageData['page-num-requested'],
+              current_items: pageData['page-size-returned']
             },
             data: videos
           }
+          console.log(page)
+          console.log(stateData.meta);
+          console.log("####")
           dispatch.videos.paginateVideos(stateData)
         }
       }
