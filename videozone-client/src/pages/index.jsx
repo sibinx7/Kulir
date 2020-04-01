@@ -108,7 +108,11 @@ class VideoIndex extends Component{
     }    
   }
   render() {
-    const { loading, videos } = this.props;
+    const { loading, videos, search } = this.props;
+    let videoData = [];
+    if(videos.data){
+      videoData = videos.data;
+    }
     const { scrollAutoHeight, currentPage } = this.state;  
     let hasMoreItems = false;
     try{
@@ -117,8 +121,15 @@ class VideoIndex extends Component{
     }catch(e){
 
     }
-
-
+    if(!!search){
+      videoData = videoData.filter((item, index) => {
+        try{
+          return item.name.toLowerCase().indexOf(search.toLowerCase()) > -1 ; // includes can be use
+        }catch(e){
+          return true;
+        }
+      })
+    }
 
     return (
       <React.Fragment>
@@ -155,7 +166,7 @@ class VideoIndex extends Component{
               > */}
               <div className="grid grid-cols-3 gap-7">
               {
-                videos.data.map((video, index) => {
+                videoData.map((video, index) => {
                   const keyIndex = `${index}-${video.id || '#'}`
                   return(
                     <React.Fragment>                      
@@ -183,10 +194,11 @@ class VideoIndex extends Component{
 }
 
 
-const mapStateToProps = ({videos, loading}) => {
+const mapStateToProps = ({videos, loading, search}) => {
   return {
     videos,
-    loading 
+    loading,
+    search 
   }
 }
 

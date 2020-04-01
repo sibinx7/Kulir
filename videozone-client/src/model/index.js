@@ -13,7 +13,22 @@ const loading = {
   }
 }
 
+
+const search = {
+  state: '',
+  reducers:{
+    setSearch(state, payload){
+      return payload;
+    },
+    resetSearch(state, payload){
+      return ''
+    }
+  }
+}
+
+
 export default {
   loading,
-  videos
+  videos,
+  search
 }

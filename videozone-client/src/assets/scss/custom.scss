@@ -27,3 +27,14 @@ body{
     }
   }
 }
+
+.search__reset{
+  top: 10px;
+  right: 15px;
+  button{
+    svg{
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
