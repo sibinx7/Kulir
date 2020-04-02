@@ -25,7 +25,7 @@ export const videos = {
       state['links'] = payload.links;
       state.data = [...state.data, ...payload.data]      
       console.log(state.data);
-      return state;
+      return {...state};
     },
 
     filterData(state, payload){

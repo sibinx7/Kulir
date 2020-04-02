@@ -7,10 +7,10 @@ const Album = lazy(async () => await import("../statless/album"))
 
 class VideoAlbum extends Component{
   render(){
-    const { className, video } = this.props;
+    const { className="", video } = this.props;
     return(
       <React.Fragment>        
-        <div className={`${className}`}>
+        <div className={`${className} video__album`}>
           <Album video={video}/>
         </div>
       </React.Fragment>

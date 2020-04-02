@@ -3,8 +3,10 @@ import {  connect } from "react-redux";
 import InfiniteScroll from "react-infinite-scroller";
 import {  Scrollbars } from "react-custom-scrollbars";
 
+import {  LoaderSVG } from "../components/statless/loader"
 
 const VideoAlbum = lazy(async () => await import('../components/state/video-album'))
+
 
 
 class VideoIndex extends Component{
@@ -20,9 +22,16 @@ class VideoIndex extends Component{
   }
 
 
-  static getDerivedStateFromProps(state, props){
-    return null;
-  }
+  // static getDerivedStateFromProps(props, state){
+  //   try{
+  //     console.log("Video data updated ....")
+  //     console.log(props)
+  //     console.log(props.videos.data.length)
+  //   }catch(e){
+      
+  //   }
+  //   return null;
+  // }
 
   componentDidUpdate(){
 
@@ -86,6 +95,9 @@ class VideoIndex extends Component{
       try{
         const { currentPage } = this.state;
         const { videos:{meta, data, links}, loading, getPaginatedData } = this.props;
+        if(!(meta.total > data.length) ){
+          return true;
+        }
         if(meta.page !== currentPage){
           if(!loading){
             const page = currentPage + 1;
@@ -133,10 +145,11 @@ class VideoIndex extends Component{
 
     return (
       <React.Fragment>
+        <div className="page__content">
         {
           (
             <Suspense fallback={<div>Working...</div>}>
-              <div>              
+              <div>                          
               <Scrollbars 
                   autoHeight={scrollAutoHeight}
                   onScroll={this.scrollbarScroll}
@@ -186,9 +199,11 @@ class VideoIndex extends Component{
           )
         }
         {
-          !loading && <p>Loading content...</p>
+          loading && <div className="px-2 py-3 loading-container absolute">
+            <LoaderSVG className={`svg-loder`} classNameSVG={`svg-loader-icon text-white fill-white`}/>
+          </div>
         }
-        
+        </div>
       </React.Fragment>
     )
   }
