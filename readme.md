@@ -15,4 +15,7 @@ Swagger API documentation available on [http://localhost:8080/api-docs](http://l
 
 ### Demo 
 
-Online [Demo](https://videozone-client.herokuapp.com/) 
+Online [Demo](https://videozone-client.herokuapp.com/) , [Server](https://videzone-server.herokuapp.com/),
+[API documentation](https://videzone-server.herokuapp.com/api-docs)
+
+
