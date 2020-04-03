@@ -4,26 +4,29 @@ const path = require("path");
 /**
  * VideCtrl class 
  */
+
 const VideoCtrl = {
   /**
   * @swagger
-  * /videos:
-  *   get:
-  *     description: Retrive list of videos  
-  *     parameters:
-  *       - name: page 
-  *         in: query   
-  *       - $ref: '#per_page' 
-  *     responses:
-  *       '200':
-  *         description: OK  
-  *       404:
-  *         description: Requested page/data not found on server 
-  *       '5XX':
-*             description: Unexpected server error   
+  * paths:
+  *   /videos:
+  *     get:
+  *       description: Retrive list of videos
+  *       tags: [Videos]
+  *       parameters:     
+  *         - $ref: '#/components/schemas/Videos/parameters/per_page'    
+  *         - $ref: '#/components/schemas/Videos/parameters/page'    
+  *         - in: query
+  *           name: search
+  *           required: false 
+  *       responses:
+  *         '200':
+  *           description: OK  
+  *         404:
+  *           description: Requested page/data not found on server 
+  *         '5XX':
+  *             description: Unexpected server error   
   *             
-  * per_page:
-  *   type: integer 
   */  
   index: function(req, res, next){
     const queries = req.query;
@@ -56,6 +59,21 @@ const VideoCtrl = {
     }
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(responseData)
+  },
+
+  /**
+   * @swagger 
+   * paths:
+   *  /videos/{id}:
+   *    get:
+   *       description: Get a Video by id
+   *       tags: [ Videos ]
+   *       parameters:
+   *         - $ref: '#/components/schemas/VideoRoute/parameters/id'
+   *  
+   */
+  show: (req, res, next) => {
+
   }
 }
 

@@ -1,7 +1,28 @@
-parameters:
-  - name: per_page
-    in: query 
-    schema:
-      type: string 
-  - name: page 
-    in: query 
+components:
+  schemas:
+    Videos:
+      parameters:
+        per_page:
+          in: query
+          name: per_page 
+          required: true 
+          schema:
+            type: integer
+          example: 20
+        page:
+          in: query
+          name: page
+          required: true
+          schema:
+            type: integer 
+          example: 1
+    VideoRoute:      
+      parameters:
+        id:
+          in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          example:                    
+

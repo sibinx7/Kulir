@@ -21,6 +21,7 @@ var app = express();
 
 const swaggerConfig = {
   swaggerDefinition:{
+    openapi: '3.0.0',
     info: {
       title: 'Videozone Server',
       version: '1.0.0',
@@ -33,11 +34,11 @@ const swaggerConfig = {
     "./controllers/**/*.js",
     "./controllers/*.js",
     "./routes/*.js",
-    "./docs/api-info/schema/**/*.json",
-    "./docs/api-info/schema/**/*.yml"
+    "./routes/*.yml",    
+    "./docs/**/*.yml",    
+    ".\docs\**\*.yml"    
   ]
 }
-
 
 
 
