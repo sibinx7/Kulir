@@ -153,6 +153,7 @@ class VideoIndex extends Component{
               <div>                          
               <Scrollbars 
                   autoHeight={scrollAutoHeight}
+                  autoHide={false}
                   onScroll={this.scrollbarScroll}
                   onScrollStop={this.scrollbarScrollStop}
                   style={
@@ -161,6 +162,7 @@ class VideoIndex extends Component{
                     }
                   }      
                   ref={ (ref) => this.scrollRef = ref }            
+                  renderThumbVertical={ props => <div {...props} style={{height: 100}} className="thumb-vertical"/>}
                 >
                   <div className="infinit__scroll__wrapper">
                     <div className="infinit__scroll__inner">
@@ -174,8 +176,10 @@ class VideoIndex extends Component{
                 } }
               > */}
               <div className="galler__container">
+                {/* grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg: */}
               <div className="grid grid-cols-3 gap-7">
-                <div className="pre-style-content  col-span-3 h-4">
+                {/*  sm:col-span-2 md:col-span-2  lg:col-span-3 */}
+                <div className="pre-style-content col-span-3 h-4">
 
                 </div>
                 

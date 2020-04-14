@@ -80,7 +80,7 @@ class Header extends Component{
           </div>
         </div>
         <div className="col-span-2 text-right">
-          <button className="" onClick={e => this.showSearchForm(e)}>
+          <button id="header-search-toggle" className="" onClick={e => this.showSearchForm(e)}>
           <img src={IconSearch} alt="Search videos" className="w-5"/>
           </button>
         </div>
@@ -88,12 +88,12 @@ class Header extends Component{
         {
           showSearchForm && (
             <div className="header__search absolute grid grid-cols-1 w-full">
-          <form action="" className="w-full relative mr-6 my-2">
-            <input type="text" placeholder="Search..."  value={searchText} 
+          <form action="" className="w-full relative mr-6 my-2" id="video-search-form">
+            <input type="text" placeholder="Search..."  id="video-search-field" value={searchText} 
             onChange={e => this.handleSearchChange(e)}
             className="w-full px-3 py-3"/>
-            <div className="absolute search__reset">
-              <button onClick={e => this.resetSearchForm(e)}>
+            <div className="absolute search__reset" id="header-search">
+              <button id="close-search-form"  onClick={e => this.resetSearchForm(e)}>
                 <svg id="Capa_1" enable-background="new 0 0 515.556 515.556" height="512" viewBox="0 0 515.556 515.556" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m257.778 0c-142.137 0-257.778 115.641-257.778 257.778s115.641 257.778 257.778 257.778 257.778-115.641 257.778-257.778-115.642-257.778-257.778-257.778zm113.926 326.141-45.564 45.564-68.362-68.362-68.362 68.362-45.564-45.564 68.362-68.362-68.362-68.362 45.564-45.564 68.362 68.362 68.362-68.362 45.564 45.564-68.362 68.362s68.362 68.362 68.362 68.362z"/></svg>
               </button>
             </div>
