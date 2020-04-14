@@ -1,7 +1,10 @@
 import { getVideos } from "../requests/video.requests"
 
 /**
- * videos reducer, currently set to array, but it may require object with
+ * @object
+ * @name videos 
+ * @summary video reducer 
+ * @description videos reducer, currently set to array, but it may require object with
  *  properties meta, links, data, currently only data is use.
  */
 
@@ -33,6 +36,15 @@ export const videos = {
     }
   },
   effects: (dispatch) => ({
+    /**
+     * @method
+     * @name getInitialData
+     * @summary Async reduer method to fetch data 
+     * @description Async ajax to fetch information
+     * @param {} payload 
+     * @param {*} rootState 
+     * @return Dispatch sync reducer method to update reducer 
+     */
     async getInitialData(payload, rootState){
       dispatch.loading.setLoading();
       const data = await getVideos({});
@@ -59,14 +71,15 @@ export const videos = {
     },
     /**
      * @todo 2 function use almost same codes, merge common content 
+     * @method 
+     * @name getPaginatedData 
+     * @summary Fetch paginated data      
+     * @description Fetch paginated data, payload will have per_page, page and search information
      * @param {*} payload 
      * @param {*} rootState 
      */
-    async getPaginatedData(payload, rootState){
-      console.log("I am calling data...")
-      const { per_page, page, search } = payload;
-      console.log(payload)
-      console.log("Data to send....")
+    async getPaginatedData(payload, rootState){      
+      const { per_page, page, search } = payload;      
       dispatch.loading.setLoading();
       const data = await getVideos({per_page, page, search});
       dispatch.loading.resetLoading();
@@ -84,9 +97,6 @@ export const videos = {
             },
             data: videos
           }
-          console.log(page)
-          console.log(stateData.meta);
-          console.log("####")
           dispatch.videos.paginateVideos(stateData)
         }
       }

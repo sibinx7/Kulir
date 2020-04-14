@@ -16,7 +16,10 @@ const MainRouteList = [{
 }
 ]
 
-
+/**
+ * @name MainRoute 
+ * @summary Route component 
+ */
 const MainRoutes = () => {
   return (
     <Router>

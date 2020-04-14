@@ -12,13 +12,28 @@ class Header extends Component{
     searchText:''
   }
 
+  /**
+   * @method 
+   * @name resetSearchForm 
+   * @summary Reset search and show all results
+   * @description Clear search reducer and show all the result, hide form and clear text  
+   * @params e Evenet DOM event 
+   */
   resetSearchForm = (e) => {
     e.preventDefault();
     this.setState({
-      showSearchForm: false
+      showSearchForm: false,
+      searchText: ""
+    }, () => {
+      this.props.resetSearch();
     })
   }
   
+  /**
+   * @method 
+   * @name showSearchForm
+   * @summary Display search form 
+   */
   showSearchForm = (e) => {
     e.preventDefault();
     this.setState({
@@ -26,6 +41,13 @@ class Header extends Component{
     });
   }
 
+  /**
+   * @method 
+   * @name handleSearchChange 
+   * @summary Perform search action 
+   * @description Change reducer, then it filter videos based on search keyword
+   * @params e Event DOM event 
+   */
   handleSearchChange = (e) => {
     e.preventDefault();
     const value = e.currentTarget.value;
@@ -89,8 +111,7 @@ class Header extends Component{
 
 const mapStateToProps = ({videos}) => {
   let genre_title= {};
-  try{
-    console.log(videos);
+  try{    
     genre_title = videos['meta']['title']
   }catch(e){
 
@@ -101,9 +122,10 @@ const mapStateToProps = ({videos}) => {
   }
 }
 
-const mapDispatchToProps = ({videos, search:{ setSearch}}) => {
+const mapDispatchToProps = ({videos, search:{ setSearch, resetSearch }}) => {
   return {
-    setSearch
+    setSearch,
+    resetSearch
   }
 }
 

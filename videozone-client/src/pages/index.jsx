@@ -2,6 +2,7 @@ import React, { Component, Suspense, lazy } from "react";
 import {  connect } from "react-redux";
 import InfiniteScroll from "react-infinite-scroller";
 import {  Scrollbars } from "react-custom-scrollbars";
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 
 import {  LoaderSVG } from "../components/statless/loader"
 
@@ -84,10 +85,10 @@ class VideoIndex extends Component{
   }
 
   /* Scroll finished */
-  scrollbarScrollStop = () => {
-    console.log("Stop scrolling");
-    const scrollValues = this.scrollRef.getValues();
-    console.log(scrollValues);
+  scrollbarScrollStop = () => {    
+    const scrollValues = this.scrollRef.getValues();    
+    console.log(this.scrollRef.getValues())
+    console.log('Scroll happened...')
     const { scrollTop, clientHeight, scrollHeight} = scrollValues;
     const totalScrolledVertical = scrollTop + clientHeight;
     const requiredScrolledVertical = 50;
@@ -172,22 +173,28 @@ class VideoIndex extends Component{
                   return this.parentRef
                 } }
               > */}
+              <div className="galler__container">
               <div className="grid grid-cols-3 gap-7">
                 <div className="pre-style-content  col-span-3 h-4">
 
                 </div>
-              {
-                videoData.map((video, index) => {
-                  const keyIndex = `${index}-${video.id || '#'}`
-                  return(
-                    <React.Fragment>                      
-                      <VideoAlbum video={video} key={keyIndex}/>
-                    </React.Fragment>
-                  )
-                })
-              }
+                
+                  <LazyLoadComponent>
+                    {
+                      videoData.map((video, index) => {
+                        const keyIndex = `${index}-${video.id || '#'}`
+                        return(
+                          <LazyLoadComponent key={keyIndex}>
+                            <VideoAlbum video={video} key={keyIndex}/>                  
+                          </LazyLoadComponent>
+                        )
+                      })
+                    }
+                  </LazyLoadComponent>
+                
               <div className="post-style-content col-span-3 h-4">
 
+              </div>
               </div>
               </div>                       
               {/* </InfiniteScroll>       */}
