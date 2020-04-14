@@ -57,9 +57,12 @@
     "autoprefixer": "^9.7.4",
     "concurrently": "^5.1.0",
     "cypress": "^4.4.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "flow-bin": "^0.121.0",
     "node-sass": "^4.13.1",
     "postcss-cli": "^7.1.0",
+    "redux-mock-store": "^1.5.4",
     "tailwindcss": "^1.2.0"
   }
 }

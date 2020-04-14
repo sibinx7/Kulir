@@ -5,7 +5,7 @@ import {  connect } from "react-redux";
 import IconBack from "../assets/images/back.png";
 import IconSearch from "../assets/images/search.png"
 
-class Header extends Component{
+export class Header extends Component{
 
   state = {
     showSearchForm: false,
@@ -35,7 +35,9 @@ class Header extends Component{
    * @summary Display search form 
    */
   showSearchForm = (e) => {
-    e.preventDefault();
+    if(e){
+      e.preventDefault();
+    }    
     this.setState({
       showSearchForm: true
     });
@@ -68,7 +70,7 @@ class Header extends Component{
         <div className="col-span-10">
           <div>
             <div>              
-              <h4 className="text-white">
+              <h4 className="text-white" id="genre-title">
                 <a href="" className="inline mr-3">
                   <img src={IconBack} alt="Go back" className="inline w-5"/>
                 </a>
@@ -128,5 +130,7 @@ const mapDispatchToProps = ({videos, search:{ setSearch, resetSearch }}) => {
     resetSearch
   }
 }
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
