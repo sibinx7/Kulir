@@ -13,6 +13,9 @@
   - Implement search option 
   
 - 14/04/2020
- - Implement Cypress E2E testing 
- - Add React Lazy load plugin, help images to load later after the JSON response based on when they become visible
- - Fix reset search form issue   
+  - Implement Cypress E2E testing 
+  - Add React Lazy load plugin, help images to load later after the JSON   response based on when they become visible
+  - Fix reset search form issue   
+
+ - 15/04/2020
+  - Add unit test with jest. enzyme, react testing utilities
