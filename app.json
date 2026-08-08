@@ -33,7 +33,11 @@
           "image": "./assets/images/kulir-splash.png",
           "imageWidth": 300
         }
-      ]
+      ],
+      "expo-font",
+      "expo-image",
+      "expo-status-bar",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
